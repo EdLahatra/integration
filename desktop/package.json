@@ -3,10 +3,13 @@
   "version": "0.1.0",
   "private": true,
   "dependencies": {
+    "@material-ui/core": "^3.0.3",
+    "@material-ui/icons": "^3.0.1",
     "history": "^4.7.2",
     "moment": "^2.22.2",
     "prop-types": "^15.6.2",
     "react": "^16.6.3",
+    "react-avatar-editor": "^11.0.4",
     "react-datepicker": "^2.0.0",
     "react-dom": "^16.6.3",
     "react-dropzone": "^7.0.1",
@@ -16,7 +19,8 @@
     "react-router-dom": "^4.3.1",
     "react-scripts": "2.1.1",
     "react-select": "^2.1.2",
-    "redux": "^4.0.1"
+    "redux": "^4.0.1",
+    "tcomb-form": "^0.9.21"
   },
   "devDependencies": {
     "babel-cli": "^6",
@@ -98,10 +102,10 @@
             "config": "../common/config",
             "store": "../common/redux/store",
             "super_container": "../common/super_container",
-            "tcomb-form": "./src/component/forms/modules/tcomb-form",
-            "InputComponent": "./src/component/forms/inputText",
-            "forms": "./src/component/forms",
-            "models": "../common/models"
+            "InputComponent": "./src/components/forms/inputText",
+            "forms": "./src/components/forms",
+            "models": "../common/models",
+            "common": "../common"
           }
         }
       ]

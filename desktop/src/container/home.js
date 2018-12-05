@@ -1,7 +1,7 @@
 import React from 'react';
 
 import HomeParent, { reduxConnect } from 'super_container/home';
-import Modal from '../component/modalForm';
+import Modal from '../components/modalForm';
 
 class Home extends HomeParent {
   render() {

@@ -51,7 +51,7 @@ var config = {
       exclude: [/node_modules/],
       loader : 'babel-loader'
     }, {
-      test: /\.(png|eot|svg|woff2|woff|ttf)$/,
+      test: /\.(png|jpeg|eot|svg|woff2|woff|ttf)$/,
       use: [
         {
           loader: 'file-loader',
