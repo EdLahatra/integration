@@ -1,0 +1,23 @@
+// @import 'scss/app.scss';
+
+.popup {
+  background: rgba(0, 0, 0, .5);
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  z-index: 1000;
+
+  .popup-content {
+    border-radius: 6px;
+    width: 500px;
+    height: 200px;
+    background: white;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    margin-left: -250px;
+    margin-top: -100px;
+  }
+}
