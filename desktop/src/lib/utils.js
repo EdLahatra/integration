@@ -1,26 +1,26 @@
 import t from 'tcomb-form';
 
-import TemplateTextboxField from '../components/form/inputText/factory-field';
+import TemplateTextboxField from '../components/forms/inputText/factory-field';
 import TextboxFieldFactory from 'common/components/forms/inputText';
 TextboxFieldFactory.template = TemplateTextboxField;
 
-import TemplateSelect from '../components/form/select';
+import TemplateSelect from '../components/forms/select';
 import SelectFactory from 'common/components/forms/select';
 SelectFactory.template = TemplateSelect;
 
-import TemplateRadio from '../components/form/radio';
+import TemplateRadio from '../components/forms/radio';
 import RadioFactory from 'common/components/forms/radio';
 RadioFactory.template = TemplateRadio;
 
-import TemplateDropzone from '../components/form/dropzone';
+import TemplateDropzone from '../components/forms/dropzone';
 import DropzoneFactory from 'common/components/forms/dropzone';
 DropzoneFactory.template = TemplateDropzone;
 
-import TemplateAvatar from '../components/form/avatar';
+import TemplateAvatar from '../components/forms/avatar';
 import AvatarFactory from 'common/components/forms/avatar';
 AvatarFactory.template = TemplateAvatar;
 
-import TemplateDatePicker from '../components/form/datepicker';
+import TemplateDatePicker from '../components/forms/datepicker';
 import DatePicker from 'common/components/forms/datepicker';
 DatePicker.template = TemplateDatePicker;
 /* DatePicker.transformer = {
@@ -122,7 +122,8 @@ export default {
         factory: this.toFactoryStruct(item),
         fullWidth: true,
         label: key,
-        type: item.type
+        type: item.type,
+        promiseOptions: funct[key] && funct[key].options ? funct[key].options(1) : ''
       };
 
     });

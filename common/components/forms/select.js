@@ -31,6 +31,7 @@ export default class MyComponent extends Component {
       'help',
       'onBlur',
       'isValide',
+      'promiseOptions'
     ].forEach(name => locals[name] = this.props.options[name]);
 
     return locals;

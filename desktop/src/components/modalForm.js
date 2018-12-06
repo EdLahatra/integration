@@ -32,7 +32,35 @@ export default class About extends React.Component {
   }
 
   _initForm(value) {
-    const fields = utils.toFormTypeAndFieldsOptions({ schema: FichePersonnelle.schema }, {}).fields;
+    const options = [
+      { value: 'chocolate', label: 'Chocolate' },
+      { value: 'strawberry', label: 'Strawberry' },
+      { value: 'vanilla', label: 'Vanilla' }
+    ];
+    
+    const filterFunction = inputValue => {
+      if (inputValue) {
+        return options.filter(i =>
+            i.label.toLowerCase().includes(inputValue.toLowerCase())
+          );
+      }
+      return options;
+    };
+    
+    const promiseOptions = inputValue =>
+      new Promise(resolve => {
+        setTimeout(() => {
+          resolve(filterFunction(inputValue));
+        }, 1000);
+      });
+    const fields = utils.toFormTypeAndFieldsOptions(
+      { schema: FichePersonnelle.schema },
+      {
+        list: {
+          options: () => promiseOptions
+        }
+      }
+    ).fields;
     this.setState({
       value,
       options: {

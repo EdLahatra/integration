@@ -1,4 +1,4 @@
-const t = require('tcomb-form');
+import t from 'tcomb-form';
 
 const Component = t.form.Component;
 const Nil = t.Nil;
@@ -15,52 +15,55 @@ function parseNumber(value) {
   return isNumeric ? n : toNull(value)
 }
 
-export default class DatePicker extends Component {
-  constructor(props) {
-    super(props);
-  }
+// extend the base Component
+export default class DateComponent extends Component {
 
-  static transformer = {
-    format: (value) => {
-      if (t.Array.is(value)) {
-        return value
-      } else if (t.Date.is(value)) {
-        return [value.getFullYear(), value.getMonth(), value.getDate()].map(String)
-      }
-      return defaultDatetimeValue
-    },
-    parse: (value) => {
-      const numbers = value.map(parseNumber)
-      if (numbers.every(t.Number.is)) {
-        return new Date(numbers[0], numbers[1], numbers[2])
-      } else if (numbers.every(Nil.is)) {
-        return null
-      }
-      return numbers
+    // this is the only required method to implement
+    getTemplate() {
+      return this.props.options.factory.template;
     }
-  }
 
-  // this is the only required method to implement
-  getTemplate() {
-    return this.props.options.factory.template;
-  }
-
-  getLocals() {
-    const locals = super.getLocals();
-    [
-      'help',
-      'maximumDate',
-      'minimumDate',
-      'minuteInterval',
-      'mode',
-      'timeZoneOffsetInMinutes',
-      'icon',
-      'iconEnd',
-      'onSubmitEditing',
-      'format',
-    ].forEach(name => locals[name] = this.props.options[name]); // eslint-disable-line
-
-    return locals;
-  }
+    // you can optionally override the default getLocals method
+    // it will provide the locals param to your template
+    getLocals() {
+        const locals = super.getLocals();
+        [
+          'help',
+          'maximumDate',
+          'minimumDate',
+          'minuteInterval',
+          'mode',
+          'icon',
+          'iconEnd',
+          'onSubmitEditing',
+          'format',
+          'onSelect',
+          'selected',
+          'className',
+          'containerClassName'
+        ].forEach(name => locals[name] = this.props.options[name]); // eslint-disable-line
+    
+        return locals;
+      }
 }
 
+// as example of transformer: this is the default transformer for textboxes
+DateComponent.transformer = {
+    format: (value) => {
+        if (t.Array.is(value)) {
+          return value
+        } else if (t.Date.is(value)) {
+          return [value.getFullYear(), value.getMonth(), value.getDate()].map(String)
+        }
+        return defaultDatetimeValue
+      },
+      parse: (value) => {
+        const numbers = value.map(parseNumber)
+        if (numbers.every(t.Number.is)) {
+          return new Date(numbers[0], numbers[1], numbers[2])
+        } else if (numbers.every(Nil.is)) {
+          return null
+        }
+        return numbers
+      }
+};
