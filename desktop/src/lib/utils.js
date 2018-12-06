@@ -20,10 +20,6 @@ import TemplateAvatar from '../components/form/avatar';
 import AvatarFactory from 'common/components/forms/avatar';
 AvatarFactory.template = TemplateAvatar;
 
-import TemplateCheckbox from '../components/form/checkbox';
-import CheckboxFactory from 'common/components/forms/checkbox';
-CheckboxFactory.template = TemplateCheckbox;
-
 import TemplateDatePicker from '../components/form/datepicker';
 import DatePicker from 'common/components/forms/datepicker';
 DatePicker.template = TemplateDatePicker;
@@ -59,14 +55,14 @@ export default {
 
   toFactoryStruct(value) {
     switch (value.type) {
-      case 'string':
+      case 'text':
         return TextboxFieldFactory;
       case 'email':
         return TextboxFieldFactory;
       case 'select':
         return SelectFactory;
-      case 'bool':
-        return CheckboxFactory;
+      case 'checkbox':
+        return TextboxFieldFactory;
       case 'radio':
         return RadioFactory;
       case 'date':
@@ -82,7 +78,7 @@ export default {
 
   toTypeStruct(value) {
     switch (value.type) {
-      case 'string':
+      case 'text':
         return t.String;
       case 'select':
       return t.list(t.String);
@@ -90,7 +86,7 @@ export default {
         return t.refinement(t.String, this.verifyEmail);
       case 'radio':
         return t.Boolean;
-      case 'bool':
+      case 'checkbox':
         return t.Boolean;
       case 'date':
         return t.Date;
@@ -125,7 +121,8 @@ export default {
         placeholder: `placeholder.${key}`,
         factory: this.toFactoryStruct(item),
         fullWidth: true,
-        label: key
+        label: key,
+        type: item.type
       };
 
     });

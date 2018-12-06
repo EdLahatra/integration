@@ -11,7 +11,7 @@ export default class Datepicker extends React.Component {
     }
 
     componentWillMount() {
-        if(this.props.selected)this.setState({date:this.props.selected});
+        if(this.props.selected)this.setState({ date: this.props.selected });
         this.props.changeFunction(this.state.date);
     }
 
@@ -43,11 +43,11 @@ export default class Datepicker extends React.Component {
     }
 }
 Datepicker.propTypes = {
-    changeFunction: PropTypes.func,
-    containerClassName: PropTypes.string,
-    className: PropTypes.string,
-    hasError: PropTypes.string,
-    error: PropTypes.string,
-    label: PropTypes.string,
-    selected: PropTypes.string,
+    changeFunction: PropTypes.func.isRequired,
+    containerClassName: PropTypes.string.isRequired,
+    className: PropTypes.string.isRequired,
+    hasError: PropTypes.string.isRequired,
+    error: PropTypes.string.isRequired,
+    label: PropTypes.string.isRequired,
+    selected: PropTypes.string.isRequired,
 };

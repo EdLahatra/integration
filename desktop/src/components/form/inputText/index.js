@@ -31,7 +31,8 @@ export default class MyComponent extends Component {
       'placeholder',
       'help',
       'onBlur',
-      'isValide'
+      'isValide',
+      'type'
     ].forEach(name => locals[name] = this.props.options[name]);
 
     return locals;

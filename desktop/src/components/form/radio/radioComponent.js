@@ -1,65 +1,43 @@
 import React from 'react';
-import PropTypes from 'prop-types';
-import { withStyles } from '@material-ui/core/styles';
-import Radio from '@material-ui/core/Radio';
-import RadioGroup from '@material-ui/core/RadioGroup';
-import FormControlLabel from '@material-ui/core/FormControlLabel';
-import FormControl from '@material-ui/core/FormControl';
-import FormLabel from '@material-ui/core/FormLabel';
 
-const styles = theme => ({
-  root: {
-    display: 'flex',
-  },
-  formControl: {
-    margin: theme.spacing.unit * 3,
-  },
-  group: {
-    margin: `${theme.spacing.unit}px 0`,
-  },
-});
-
-class RadioButtonsGroup extends React.Component {
+export default class RadioButtonsGroup extends React.Component {
   state = {
-    value: 'female',
+    selectedOption: 'option1',
   };
 
-  handleChange = event => {
-    this.setState({ value: event.target.value });
+  handleOptionChange = event => {
+    this.setState({ selectedOption: event.target.value });
   };
 
   render() {
-    const { classes } = this.props;
 
     return (
-      <div className={classes.root}>
-        <FormControl component="fieldset" className={classes.formControl}>
-          <FormLabel component="legend">Gender</FormLabel>
-          <RadioGroup
-            aria-label="Gender"
-            name="gender1"
-            className={classes.group}
-            value={this.state.value}
-            onChange={this.handleChange}
-          >
-            <FormControlLabel value="female" control={<Radio color="primary" />} label="Female" />
-            <FormControlLabel value="male" control={<Radio color="primary" />} label="Male" />
-            <FormControlLabel value="other" control={<Radio color="primary" />} label="Other" />
-            <FormControlLabel
-              value="disabled"
-              disabled
-              control={<Radio />}
-              label="(Disabled option)"
-            />
-          </RadioGroup>
-        </FormControl>
+      <div>
+        <div className="radio">
+          <label>
+            <input type="radio" value="option1" 
+              checked={this.state.selectedOption === 'option1'} 
+              onChange={this.handleOptionChange} />
+            Option 1
+          </label>
+        </div>
+        <div className="radio">
+          <label>
+            <input type="radio" value="option2" 
+              checked={this.state.selectedOption === 'option2'} 
+              onChange={this.handleOptionChange} />
+            Option 2
+          </label>
+        </div>
+        <div className="radio">
+          <label>
+            <input type="radio" value="option3" 
+              checked={this.state.selectedOption === 'option3'} 
+              onChange={this.handleOptionChange} />
+            Option 3
+          </label>
+        </div>
       </div>
     );
   }
 }
-
-RadioButtonsGroup.propTypes = {
-  classes: PropTypes.object.isRequired,
-};
-
-export default withStyles(styles)(RadioButtonsGroup);

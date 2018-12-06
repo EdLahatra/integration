@@ -3,11 +3,11 @@ const Schema = {
   primaryKey: 'id',
   properties: {
     avatar: { type: 'avatar' },
-    nom: { type: 'string' },
+    nom: { type: 'text' },
     email: { type: 'email' },
     ville: { type: 'string', optional: true },
     list: { type: 'select' },
-    bool: { type: 'bool' },
+    bool: { type: 'checkbox' },
     radio: { type: 'radio' },
     birthday: { type: 'date' },
     file: { type: 'file' },

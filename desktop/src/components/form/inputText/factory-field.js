@@ -1,24 +1,20 @@
 import React from 'react';
-import FormControl from '@material-ui/core/FormControl';
-import Input from '@material-ui/core/Input';
-import InputLabel from '@material-ui/core/InputLabel';
-import FormHelperText from '@material-ui/core/FormHelperText';
 
 let error = '';
 
 const InputText = (locals) => {
-  return (<FormControl margin="normal" required={locals.required} fullWidth={locals.fullWidth}>
-    <InputLabel>{locals.label}</InputLabel>
-    <Input
+  return (<div margin="normal" required={locals.required}>
+    <label>{locals.label}</label>
+    <input
       name={locals.name}
-      type="text"
+      type={locals.type}
       id={locals.id}
       autoComplete={locals.autoComplete}
       value={locals.value}
       onChange={(e) => {
         error = '',
         console.log('locals.value', locals.value);
-        const val = e.target.value;
+        const val = locals.type === 'checkbox' ? e.target.checked : e.target.value;
         if (val && val.length < 2) error = 'test'
         locals.onChange(val);
       // locals.isValide(val);
@@ -28,16 +24,16 @@ const InputText = (locals) => {
       placeholder={locals.placeholder}
       onBlur={locals.onBlur}
     />
-    <FormHelperText id="help" >{locals.help}</FormHelperText>
-    <FormHelperText id="name-error-text" >{error}</FormHelperText>
+    <p id="help" >{locals.help}</p>
+    <p id="name-error-text" >{error}</p>
     {
       locals.required
-        ? <FormHelperText id="name-error-text" error>
+        ? <p id="name-error-text" error>
           {locals.isValide ? locals.errorInput : null}
-        </FormHelperText>
+        </p>
         : null
     }
-  </FormControl>);
+  </div>);
 };
 
 export default InputText;
